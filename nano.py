@@ -89,11 +89,11 @@ def start_command(client, message):
 
 @app.on_message(filters.command("help"))
 def help_command(client, message):
-    help_text = "Available commands:\n\n" \
-                "/start - Start the bot\n" \
-                "/help - Display this help message\n" \               
-                "/mybots - Show an my bots\n" \              
-                "/img [text] - Gen image through api\n" \
+    help_text = "Available commands:\n\n" 
+                "/start - Start the bot\n" 
+                "/help - Display this help message\n"                
+                "/mybots - Show an my bots\n"              
+                "/img [text] - Gen image through api\n" 
                 "✧━━━━━▣✧❅✦❅✧▣━━━━━✧"
 
     inline_keyboard = [
