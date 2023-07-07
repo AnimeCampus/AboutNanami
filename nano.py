@@ -20,56 +20,6 @@ API_HASH = '12bbd720f4097ba7713c5e40a11dfd2a'
 app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 
-# Enable logging
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
-
-# Join event handler
-@app.on_message(filters.new_chat_members)
-def welcome_message(client, message: Message):
-    chat_id = message.chat.id
-    user_ids = [user.id for user in message.new_chat_members]
-
-async def some_function():
-    profile_photos = await client.get_profile_photos(chat_id, user_ids[0].id, limit=len(user_ids))
-    # Rest of your code...
-
-    # Download the profile photos
-    image_paths = []
-    for index, photo in enumerate(profile_photos.photos):
-        file_id = photo.sizes[0].file_id
-        file_path = client.download_media(file_id, file_ref=file_id)
-        image_paths.append(file_path)
-
-    # Create a collage with the profile photos
-    images = [Image.open(image_path) for image_path in image_paths]
-    size = (128, 128)  # Size of each profile picture in the collage
-    num_cols = 4  # Number of columns in the collage
-    num_rows = -(-len(images) // num_cols)  # Number of rows in the collage
-    collage_size = (size[0] * num_cols, size[1] * num_rows)
-    collage = Image.new('RGB', collage_size)
-    draw = ImageDraw.Draw(collage)
-
-    for i, image in enumerate(images):
-        image.thumbnail(size)
-        x = (i % num_cols) * size[0]
-        y = (i // num_cols) * size[1]
-        collage.paste(image, (x, y))
-
-    # Save the collage
-    collage_path = 'collage.jpg'
-    collage.save(collage_path)
-
-    # Send the welcome message with the collage image
-    welcome_text = f"Welcome, {' '.join([user.first_name for user in message.new_chat_members])}!"
-    bot.send_photo(chat_id, photo=collage_path, caption=welcome_text)
-
-    # Delete the downloaded profile photos and the collage image
-    for image_path in image_paths:
-        os.remove(image_path)
-    os.remove(collage_path)
-
-
 import requests
 
 
@@ -150,7 +100,7 @@ def help_command(client, message):
         [InlineKeyboardButton("Instagram", url="https://www.instagram.com/The_NanamiiKento")],
         [InlineKeyboardButton("WhatsApp", url="https://wa.me/14302478798")],
         [InlineKeyboardButton("Personal HeadSpace", url="https://t.me/TheGodly_Being")],
-        [InlineKeyboardButton("GitHub", url="https://github.com/")]
+        [InlineKeyboardButton("Channel", url="https://t.me/Anime_Campus")]       
     ]
 
     reply_markup = InlineKeyboardMarkup(inline_keyboard)
