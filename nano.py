@@ -11,7 +11,7 @@ import asyncio
 
 
 # Set your bot token here
-TOKEN = '6206599982:AAEtRoU2jV7heQn8t0Zkwh1L6khiC8EXfcM'
+TOKEN = '6399531735:AAF_AApdKiGskN0-gkNR1ZfeqczOU5CDXg0'
 
 # Replace 'YOUR_API_ID' and 'YOUR_API_HASH' with your own API credentials
 API_ID = '16743442'
